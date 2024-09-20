@@ -145,4 +145,3 @@ void optimize(data * this, data * this2){
     fclose(output_file); // Cierra el archivo
 
 }
-s

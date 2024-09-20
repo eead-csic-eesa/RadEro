@@ -1,6 +1,12 @@
-#' Starts conversion model
+#' Starts conversion model for soil redistribution
 #'
-#' Initiates the model acording to the inventory data of soil profiles according to the specified configuration.
+#' Initiates the model based on the Cs137 inventory data from soil profiles according to the specified configuration in the working directory.
+#'
+#' @param data A data frame containing the Cs137 inventory data from soil profiles. It must be located in the working directory.
+#' @param config A list or configuration file that defines the parameters for the model run. It must be located in the working directory.
+#' @param AxisMaxValue Optional. A numeric value specifying the maximum value for the axes in the plot. Defaults to NULL.
+#'
+#' @return Each soil profile analysed will generate a  plot.png and a temp folder with its corresponding ID. In addition, the whole set of results of all the points will be reported in a results.txt summary file in the working directory.
 #'
 #' @import Rcpp
 #' @import roxygen2

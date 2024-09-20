@@ -2,13 +2,9 @@ Package: RadEro
 Type: Package
 Title: Cs-137 Conversion Model
 Version: 1.0.3
-Date: 2023-12-13
-Authors@R: c(
-    person("Arturo", "Catala", email = "acatalae@gmail.com", role = c("aut", "cre")),
-    person("Borja", "Latorre", email = "borja.latorre@csic.es", role = c("aut")),
-    person("Leticia", "Gaspar", role = "aut"),
-    person("Ana", "Navas", role = "aut")
-)
+Date: 2024-09-19
+Author: Arturo Catala [aut, cre], Borja Latorre [aut], Leticia Gaspar [aut], Ana Navas [aut]
+Maintainer: Arturo Catala <acatalae@gmail.com>
 Description: Conversion model that quantifies soil redistribution rates based on Cs137 inventories measured in soil profiles.
 License: GPL (>= 2)
 Depends: R (>= 4.3.1)
