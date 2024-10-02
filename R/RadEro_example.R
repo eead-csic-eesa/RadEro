@@ -9,10 +9,6 @@
 #' @param target_dir Character. The path to the directory where the files will be copied.
 #' @param overwrite Logical. Whether to overwrite the files if they already exist in the target directory (default is TRUE).
 #'
-#' @examples
-#' # Example of how to use this function:
-#' # Copy files to the current working directory
-#' copy_example_files(getwd())
 #'
 #' @export
 
@@ -28,7 +24,7 @@ RadEro_example <- function(target_dir, overwrite = TRUE) {
 
   # Loop over files and copy them to the target directory
   for (file_name in files_to_copy) {
-    file_path <- system.file("data", file_name, package = "RadEro")
+    file_path <- system.file("extdata", file_name, package = "RadEro")
 
     if (file_path == "") {
       warning("File not found in package data directory: ", file_name)

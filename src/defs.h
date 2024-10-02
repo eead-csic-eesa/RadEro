@@ -31,7 +31,7 @@ typedef struct
 ////////////////////////////////////////////////////////////
 // Functions
 
-int cs_model();
+int cs_model(void);
 
 float advective_dt (data * this);
 

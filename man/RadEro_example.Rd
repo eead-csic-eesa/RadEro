@@ -17,9 +17,3 @@ This function copies example files (e.g., .js and .csv) from the `data` director
 \details{
 The function uses `system.file()` to locate the example files within the package's `data` directory and copies them to a directory of your choice using `file.copy()`.
 }
-\examples{
-# Example of how to use this function:
-# Copy files to the current working directory
-copy_example_files(getwd())
-
-}

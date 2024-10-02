@@ -2,20 +2,21 @@
 % Please edit documentation in R/resample_data.R
 \name{resample_data}
 \alias{resample_data}
-\title{@title Resample Input Data}
+\title{Resample Input Data}
 \usage{
 resample_data(data2, dir1)
 }
+\arguments{
+\item{data2}{Input data by ID. The input dataset to be resampled or transformed.}
+
+\item{dir1}{Temporal directory. Path to the folder where the resampled data will be saved.}
+}
+\value{
+A resampled version of `data2` named "_exp.txt" saved in the directory specified by `dir1`.
+}
 \description{
-@description
- 'resample_data' processes the data based on predefined rules before being read by the C model, and saves the output in a specified directory.
+'resample_data' processes the data based on predefined rules before being read by the C model, and saves the output in a specified directory.
 }
 \details{
-@details
- This function takes two arguments: a dataset (`data2`) and the temporal directory path (`dir1`).
-
- @param data2 Input data by ID. The input dataset to be resampled or transformed.
- @param dir1 Temporal directory. Path to the folder where the resampled data will be saved.
-
- @returns A resampled version of `data2` named "_exp.txt" saved in the directory specified by `dir1`.
+This function takes two arguments: a dataset (`data2`) and the temporal directory path (`dir1`).
 }

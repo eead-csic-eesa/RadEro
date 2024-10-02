@@ -16,6 +16,8 @@
 #' @import devtools
 #' @import ggplot2
 #' @import patchwork
+#' @importFrom utils head read.table tail write.table globalVariables
+#' @importFrom stats stepfun
 #'
 #' @useDynLib RadEro
 #' @export

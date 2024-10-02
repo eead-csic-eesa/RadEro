@@ -35,7 +35,7 @@
 #include "optimization.h"
 
 
-int cs_model()
+int cs_model(void)
 {
 	// Check usage
 	char fname[1024];

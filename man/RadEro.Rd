@@ -19,7 +19,7 @@ RadEro_example(directory)
 # Those files can be used as templates for your own projects.
 
 # Step 3: Execute the model with the example files
-RadEro_run(data = "archivo_ejemplo.csv", config = "archivo_ejemplo.js")
+RadEro_run(data = "input-data_example.csv", config = "input-config_example.js")
 
 }
 \seealso{

@@ -3,20 +3,23 @@ Type: Package
 Title: Cs-137 Conversion Model
 Version: 1.0.3
 Date: 2024-09-19
-Author: Arturo Catala [aut, cre], Borja Latorre [aut], Leticia Gaspar [aut], Ana Navas [aut]
+Authors@R: c(person(given = "Arturo",family = "Catala",role = c("aut", "cre"),email = "acatalae@gmail.com"),person(given = "Borja",family = "Latorre",role = "aut"),person(given = "Leticia",family = "Gaspar",role = "aut"),person(given = "Ana",family = "Navas",role = "aut"))
 Maintainer: Arturo Catala <acatalae@gmail.com>
 Description: Conversion model that quantifies soil redistribution rates based on Cs137 inventories measured in soil profiles.
 License: GPL (>= 2)
-Depends: R (>= 4.3.1)
+Depends: R (>= 4.3.0)
 Imports:
     Rcpp (>= 1.0.11),
+    dplyr (>= 1.1.4),
     roxygen2 (>= 7.2.3),
     usethis (>= 2.2.2),
     jsonlite (>= 1.8.7),
     data.table (>= 1.14.8),
     devtools (>= 2.4.5),
-    ggplot2 (>= 3.4.4),  
-	patchwork (>= 1.1.3)
+    ggplot2 (>= 3.4.4),
+    patchwork (>= 1.1.3),
+    utils (>= 4.3.1),
+    stats (>= 4.3.1)
 LinkingTo: Rcpp
 Encoding: UTF-8
 NeedsCompilation: yes

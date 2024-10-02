@@ -2,24 +2,26 @@
 % Please edit documentation in R/plot.R
 \name{plot}
 \alias{plot}
-\title{@title Plot of experimental and simulated profile inventories}
+\title{Plot of experimental and simulated profile inventories}
 \usage{
 plot(data1, data2, dir1, dir2, AxisMaxValue, cell_value)
 }
-\description{
-@description
- 'plot' returns two plots corresponding to the experimental and simulated inventories for each profile defined in the input data. Automatic function when you execute RadEro_run. It creates results folder in the current directory if didn't exist.
+\arguments{
+\item{data1}{Character. Read input data in CSV format.}
+
+\item{data2}{Filtered values of data1 for the current 'id'.}
+
+\item{dir1}{directory. Temporary working directory where the '_num.txt' and '_exp.txt' files were created.}
+
+\item{dir2}{directory. Current working directory.}
+
+\item{AxisMaxValue}{daximum value to determine the x axis limit. Only used if the user wants to escalate all the simulated profiles .}
+
+\item{cell_value}{Unit cell size in meters.}
 }
-\details{
-@details
- This 'plot' function performs several operations to create and save a combined plot displaying two types of inventories: one experimental and one simulated. It first creates a "results" folder within the directory specified by dir2. May delete the inner files of results folder if it already exists. delete previous  Then, it reads two text files, _num.txt and _exp.txt, from the directory specified by dir1. Next, it creates dataframes containing the necessary data for plotting. It calculates axis limits and labels using data from data1 and data2. Subsequently, it generates separate plots for the experimental and simulated inventories using ggplot2. These plots are combined into a single plot using the plot_layout() function. The combined plot is saved as a PNG file within the results folder, with a name based on the last id from data2. Finally, the combined plot is displayed in the console. This function utilizes ggplot2 and dplyr extensively for data manipulation and visualization.
-
- @param data1 Dataframe of numeric vectors. Read input data in CSV format.
- @param data2 dataframe of numeric vectors. Filtered values of data1 for the current 'id'.
- @param dir1 Directory. Temporary working directory where the '_num.txt' and '_exp.txt' files were created.
- @param dir2 Directory. Current working directory.
- @param AxisMaxValue Maximum value to determine the x axis limit. Only used if the user wants to escalate all the simulated profiles .
- @param cell_value Unit cell size in meters.
-
- @returns Results folder in dir2 with n plots saved as a PNG based on the n "id" defined in data2. Results summarized TXT file in the results folder.
+\value{
+Results folder in dir2 with n plots saved as a PNG based on the n "id" defined in data2. Results summarized TXT file in the results folder.
+}
+\description{
+'plot' returns two plots corresponding to the experimental and simulated inventories for each profile defined in the input data. Automatic function when you execute RadEro_run. It creates results folder in the current directory if didn't exist.
 }
