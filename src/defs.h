@@ -80,8 +80,7 @@ void debug (data * this)
 {
 	if (this->debug == 1)
 	{
-		fprintf (stderr, "DEBUG: %s\n", this->debug_msg);
-		fflush (stderr);
+		printf("DEBUG: %s\n", this->debug_msg);
 	}
 }
 

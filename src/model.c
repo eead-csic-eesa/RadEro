@@ -33,6 +33,7 @@
 #include "data_io.h"
 #include "simulation.h"
 #include "optimization.h"
+#include "R.h"
 
 
 int cs_model(void)
@@ -56,7 +57,7 @@ int cs_model(void)
 	d.debug = 0;
 
 	// Read configuration
-	sprintf (fname, "_config.js");
+	snprintf (fname, 1024, "_config.js");
 	read_config (&d, fname);
 
 	// Declare data structure and init
@@ -87,7 +88,7 @@ int main(int argc, char *argv[])
 	char fname[1024];
 	if( argc != 2 )
 	{
-		printf("Usage: %s project-folder\n", argv[0]);
+		snprintf (fname, 1024,"Usage: %s project-folder\n", argv[0]);
 		return 1;
 	}
 
@@ -102,7 +103,7 @@ int main(int argc, char *argv[])
 	d.debug = 0;
 
 	// Read configuration
-	sprintf (fname, "%s/_config.js", argv[1]);
+	snprintf (fname, 1024, "%s/_config.js", argv[1]);
 	read_config (&d, fname);
 
 	// Declare data structure and init
