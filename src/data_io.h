@@ -40,8 +40,7 @@ void read_config (data *this, char *fname)
 	cJSON *root = cJSON_ParseFile(fname);
 	if (root == NULL)
 	{
-		sprintf (this->debug_msg,
-					"Error parsing JSON file %s", fname);
+		snprintf (this->debug_msg, 1024,"Error parsing JSON file %s", fname);
 		debug (this);
 		return;
 	}
@@ -68,7 +67,7 @@ void read_config (data *this, char *fname)
 		cJSON_GetObjectItem(root, "cell-thickness")->valuefloat;
 
 	this->cells = (int)( this->size / this->dx + 0.5 );
-	sprintf (this->debug_msg, "cells %d", this->cells);
+	snprintf (this->debug_msg, 1024, "cells %d", this->cells);
 	debug (this);
 
 	// Memory allocation
@@ -167,9 +166,9 @@ void read_config (data *this, char *fname)
 		x1 = x1 + this->dx;
 	}
 
-	sprintf (this->debug_msg, "time %f", this->time);
+	snprintf (this->debug_msg, 1024, "time %f", this->time);
 	debug (this);
-	sprintf (this->debug_msg, "fallout_c %f", this->fallout_c);
+	snprintf (this->debug_msg, 1024, "fallout_c %f", this->fallout_c);
 	debug (this);
 
 }
@@ -193,7 +192,7 @@ void write_activity (data *this, int j, char *fname, char *fname2, char *fname3)
 	
 	if (fp == NULL || fp2 == NULL || fp3 == NULL)
 	{
-		sprintf (this->debug_msg, "Error writing files");
+		snprintf (this->debug_msg, 1024, "Error writing files");
 		debug (this);
 		return;
 	}
@@ -238,7 +237,7 @@ void read_activity (data *this, char *fname)
 	fp = fopen (fname, "r");
 	if (fp == NULL)
 	{
-		sprintf (this->debug_msg, "Error reading %s", fname);
+		snprintf (this->debug_msg, 1024, "Error reading %s", fname);
 		debug (this);
 		return; 
 	}

@@ -515,8 +515,7 @@ void compute_dt (data * this)
 		this->dt = 0.25 / 12.;
 	}
 
-	sprintf (this->debug_msg,
-		 "Compute Dt = %.1f months, Dt_d = %.1f months, Dt_a = %.1f months",
+	snprintf (this->debug_msg, 1024, "Compute Dt = %.1f months, Dt_d = %.1f months, Dt_a = %.1f months",
 		 this->dt * 12., diffusive_dt (this) * 12.,
 		 advective_dt (this) * 12.);
 	debug (this);
@@ -537,7 +536,7 @@ void simulate (data * this)
 
 	//printf("Simulate start. k=%f e=%f", this->k, this->e);
 
-	sprintf (this->debug_msg, "Simulate start. k=%f e=%f", this->k,
+	snprintf (this->debug_msg, 1024, "Simulate start. k=%f e=%f", this->k,
 		 this->e);
 	debug (this);
 
@@ -595,7 +594,7 @@ void simulate (data * this)
 	}
 	
 
-	sprintf (this->debug_msg, "Simulate end: %d iterations", iter_n);
+	snprintf (this->debug_msg, 1024, "Simulate end: %d iterations", iter_n);
 	debug (this);
 
 }
