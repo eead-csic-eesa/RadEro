@@ -81,6 +81,8 @@ float isotope_input_t (data * this, float ti, float tf)
 	float x1, t, dt;
 	int i, j;
 
+	x1 = 0.0; //To avoid errors, it's needed a x1 value if the condition "if" is not met.
+
 	i = (int) ( ti / this->fallout_dt );
 	j = (int) ( tf / this->fallout_dt );
 

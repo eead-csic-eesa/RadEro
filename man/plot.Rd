@@ -3,9 +3,6 @@
 \name{plot}
 \alias{plot}
 \title{Plot of experimental and simulated profile inventories}
-\usage{
-plot(data1, data2, dir1, dir2, AxisMaxValue, cell_value)
-}
 \arguments{
 \item{data1}{Character. Read input data in CSV format.}
 
@@ -20,8 +17,8 @@ plot(data1, data2, dir1, dir2, AxisMaxValue, cell_value)
 \item{cell_value}{Unit cell size in meters.}
 }
 \value{
-Results folder in dir2 with n plots saved as a PNG based on the n "id" defined in data2. Results summarized TXT file in the results folder.
+A "results" folder in "dir2" containing "n" plots saved as PNG files, where "n" corresponds to the number of "id" entries defined in "data2". Additionally, a summary TXT file is saved in the results folder.
 }
 \description{
-'plot' returns two plots corresponding to the experimental and simulated inventories for each profile defined in the input data. Automatic function when you execute RadEro_run. It creates results folder in the current directory if didn't exist.
+The "plot" function generates two plots for each profile defined in the input data: one representing the experimental inventory and the other representing the simulated inventory. This function is automatically executed when you run RadEro_run. It creates a "results" folder in the current directory if it does not already exist.
 }

@@ -5,6 +5,8 @@
 
 ///////////////////////////////////////////////////////////
 
+//#define TXTTEMP "resultstemp.txt"
+
 float error_rms(float *a, float *b, long j){
 
 	long i;
@@ -130,7 +132,7 @@ void optimize(data * this, data * this2){
 	this->k = mink;
 	this->e = mine;
 	
-	printf("e = %.6f cm/month, m = %.4f Mg/ha/year, k = %.4f cm2/month, kv = %.4f cm2/month, Experimental-inventory = %.0f Bq/m2, Simulated-inventory = %.0f Bq/m2\n",mine,mine*1200*this->dens,mink,mink*this->vol,invent(this2),invent(this));
+	// printf("e = %.6f cm/month, m = %.4f Mg/ha/year, k = %.4f cm2/month, kv = %.4f cm2/month, Experimental-inventory = %.0f Bq/m2, Simulated-inventory = %.0f Bq/m2\n",mine,mine*1200*this->dens,mink,mink*this->vol,invent(this2),invent(this));
 	
 	    FILE *output_file;
     output_file = fopen("resultstemp.txt", "w"); // Abre el archivo para escritura

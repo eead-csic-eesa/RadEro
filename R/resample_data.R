@@ -1,15 +1,15 @@
 #' @title Resample Input Data
 #'
 #' @description
-#' 'resample_data' processes the data based on predefined rules before being read by the C model, and saves the output in a specified directory.
+#' "resample_data" processes the data based on predefined rules before being read by the C model, and saves the output in a specified directory.
 #'
 #' @details
-#' This function takes two arguments: a dataset (`data2`) and the temporal directory path (`dir1`).
+#' This function takes two arguments: a dataset ("data2") and the temporal directory path ("dir1").
 #'
 #' @param data2 Input data by ID. The input dataset to be resampled or transformed.
 #' @param dir1 Temporal directory. Path to the folder where the resampled data will be saved.
 #'
-#' @returns A resampled version of `data2` named "_exp.txt" saved in the directory specified by `dir1`.
+#' @returns A resampled version of "data2" named "_exp.txt" saved in the directory specified by "dir1."
 
 
 resample_data <- function(data2, dir1) {

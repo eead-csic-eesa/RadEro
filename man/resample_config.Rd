@@ -14,11 +14,11 @@ resample_config(data2, config1, dir1)
 \item{dir1}{Temporal directory. Path to the folder where output config file should be saved.}
 }
 \value{
-A modified version of `config1` named "_config.js" that will be read by the C model.
+A modified version of "config1" named "_config.js" that will be read by the C model.
 }
 \description{
-'resample_config' adjusts and modifies a input configuration file based on the input data. The function resamples, filters and restructures data according to the parameters passed in the configuration file. It also interacts with a directory specified by the user for output.
+"resample_config" adjusts and modifies a input configuration file based on the input data. The function resamples, filters and restructures data according to the parameters passed in the configuration file. It also interacts with a directory specified by the user for output.
 }
 \details{
-This function takes three arguments: a dataset (`data2`), a configuration object (`config1`), and a directory path (`dir1`). The function applies resampling methods to the data as specified by `config1`. The resampled data is typically saved to the provided directory.
+This function takes three arguments: a dataset ("data2"), a configuration object ("config1"), and a directory path ("dir1"). The function applies resampling methods to the data as specified by "config1". The resampled data is typically saved to the provided directory.
 }

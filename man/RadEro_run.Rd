@@ -4,7 +4,7 @@
 \alias{RadEro_run}
 \title{Starts conversion model for soil redistribution}
 \usage{
-RadEro_run(data, config, AxisMaxValue = NULL)
+RadEro_run(data, config, AxisMaxValue = NULL, output_dir = NULL)
 }
 \arguments{
 \item{data}{A data frame containing the Cs137 inventory data from soil profiles. It must be located in the working directory.}
@@ -12,9 +12,11 @@ RadEro_run(data, config, AxisMaxValue = NULL)
 \item{config}{A list or configuration file that defines the parameters for the model run. It must be located in the working directory.}
 
 \item{AxisMaxValue}{Optional. A numeric value specifying the maximum value for the axes in the plot. Defaults to NULL.}
+
+\item{output_dir}{The directory where the output files will be saved. Defaults to a temporary directory.}
 }
 \value{
-Each soil profile analysed will generate a  plot.png and a temp folder with its corresponding ID. In addition, the whole set of results of all the points will be reported in a results.txt summary file in the working directory.
+A "results" folder containing for each analyzed profile: a) ID_plot.png: Experimental (blue) and simulated (red) inventory depth profile plots; b) ID_tempfile: Experimental inventory (Bq/kg) per cell unit in the defined profile depth; c) results.txt: Summary file with columns for ID, migration rate (e), erosion rate (m), diffusion coefficients (k and kv), total experimental inventory, and total simulated inventory; d) Additionally, a "temp" folder for advanced users is created for each profile, containing configuration and inventory files related to individual analyses.
 }
 \description{
 Initiates the model based on the Cs137 inventory data from soil profiles according to the specified configuration in the working directory.

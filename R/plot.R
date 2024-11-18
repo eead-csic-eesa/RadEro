@@ -1,5 +1,7 @@
 #' @title Plot of experimental and simulated profile inventories
 #'
+#' @name plot
+#'
 #' @param data1 Character. Read input data in CSV format.
 #' @param data2  Filtered values of data1 for the current 'id'.
 #' @param dir1 directory. Temporary working directory where the '_num.txt' and '_exp.txt' files were created.
@@ -8,15 +10,19 @@
 #' @param cell_value Unit cell size in meters.
 #'
 #' @description
-#''plot' returns two plots corresponding to the experimental and simulated inventories for each profile defined in the input data. Automatic function when you execute RadEro_run. It creates results folder in the current directory if didn't exist.
+#' The "plot" function generates two plots for each profile defined in the input data: one representing the experimental inventory and the other representing the simulated inventory. This function is automatically executed when you run RadEro_run. It creates a "results" folder in the current directory if it does not already exist.
 #'
-#' @returns Results folder in dir2 with n plots saved as a PNG based on the n "id" defined in data2. Results summarized TXT file in the results folder.
+#' @returns A "results" folder in "dir2" containing "n" plots saved as PNG files, where "n" corresponds to the number of "id" entries defined in "data2". Additionally, a summary TXT file is saved in the results folder.
 #'
+# Declare global variables used in ggplot2 aesthetics to prevent R CMD check NOTES.
+# These variables are part of the plotting function and are referenced within ggplot calls.
+utils::globalVariables(c("x", "y", "depth1", "num2", "midPROF", "invCS"))
 
 plot <- function(data1, data2, dir1, dir2, AxisMaxValue, cell_value) {
 
   # Create results folder.
   results_folder <- file.path(dir2, "results")
+
   dir.create(results_folder, showWarnings = FALSE)
 
   # Create data2 labels for the Bq/m2 inventory in each interval.

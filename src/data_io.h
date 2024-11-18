@@ -34,6 +34,7 @@ void read_config (data *this, char *fname)
 
 	int i;
 	char trash[1024];
+	(void)trash; // To avoid warnings
 	float ti, tf, x1, lambda;
 
 	// Parse JSON config file
@@ -181,6 +182,9 @@ void write_activity (data *this, int j, char *fname, char *fname2, char *fname3)
 
 	int i, cells;
 	float x1, x2, x3, dx;
+	(void)x2; // To avoid warning
+	(void)x3; // To avoid warning
+
 
 	FILE *fp, *fp2, *fp3;
 	if (not_loaded (this))
@@ -232,6 +236,7 @@ void read_activity (data *this, char *fname)
 		return;
 
 	int i, j, cells;
+	(void)j; // to avoid warnings
 
 	FILE *fp;
 	fp = fopen (fname, "r");

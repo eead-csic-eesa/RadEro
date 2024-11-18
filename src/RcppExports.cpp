@@ -10,16 +10,6 @@ Rcpp::Rostream<true>&  Rcpp::Rcout = Rcpp::Rcpp_cout_get();
 Rcpp::Rostream<false>& Rcpp::Rcerr = Rcpp::Rcpp_cerr_get();
 #endif
 
-// rcpp_hello_world
-List rcpp_hello_world();
-RcppExport SEXP _RadEro_rcpp_hello_world() {
-BEGIN_RCPP
-    Rcpp::RObject rcpp_result_gen;
-    Rcpp::RNGScope rcpp_rngScope_gen;
-    rcpp_result_gen = Rcpp::wrap(rcpp_hello_world());
-    return rcpp_result_gen;
-END_RCPP
-}
 // rcpp_cs_model
 void rcpp_cs_model();
 RcppExport SEXP _RadEro_rcpp_cs_model() {
@@ -31,7 +21,6 @@ END_RCPP
 }
 
 static const R_CallMethodDef CallEntries[] = {
-    {"_RadEro_rcpp_hello_world", (DL_FUNC) &_RadEro_rcpp_hello_world, 0},
     {"_RadEro_rcpp_cs_model", (DL_FUNC) &_RadEro_rcpp_cs_model, 0},
     {NULL, NULL, 0}
 };

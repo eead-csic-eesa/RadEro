@@ -5,8 +5,9 @@
 #' @param data A data frame containing the Cs137 inventory data from soil profiles. It must be located in the working directory.
 #' @param config A list or configuration file that defines the parameters for the model run. It must be located in the working directory.
 #' @param AxisMaxValue Optional. A numeric value specifying the maximum value for the axes in the plot. Defaults to NULL.
+#' @param output_dir The directory where the output files will be saved. Defaults to a temporary directory.
 #'
-#' @return Each soil profile analysed will generate a  plot.png and a temp folder with its corresponding ID. In addition, the whole set of results of all the points will be reported in a results.txt summary file in the working directory.
+#' @return A "results" folder containing for each analyzed profile: a) ID_plot.png: Experimental (blue) and simulated (red) inventory depth profile plots; b) ID_tempfile: Experimental inventory (Bq/kg) per cell unit in the defined profile depth; c) results.txt: Summary file with columns for ID, migration rate (e), erosion rate (m), diffusion coefficients (k and kv), total experimental inventory, and total simulated inventory; d) Additionally, a "temp" folder for advanced users is created for each profile, containing configuration and inventory files related to individual analyses.
 #'
 #' @import Rcpp
 #' @import roxygen2
@@ -25,15 +26,22 @@
 #' @name RadEro_run
 #'
 
-RadEro_run <- function(data, config, AxisMaxValue = NULL) {
-  cat("Starting RadEro_run...\n")
+RadEro_run <- function(data, config, AxisMaxValue = NULL, output_dir = NULL) {
+  message("Starting RadEro_run...\n")
 
-  # Create temporary directory
-  dir1 <- tempdir()
+  # Detect if it's runing in `R CMD check` context.
+  if (is.null(output_dir) || nzchar(Sys.getenv("R_TESTS"))) {
+    output_dir <- tempdir()  # Usar el directorio temporal de `R CMD check`
+  }
 
-  # Current directory
-  dir2 <- getwd()
-  cat("\n Current directory:", dir2, "\n")
+  #Save the current working directory
+  oldwd <- getwd()
+  on.exit(setwd(oldwd))
+  message(oldwd)
+
+  # Directory for output (dir2)
+  dir2 <- output_dir
+  message("\n Current directory:", dir2, "\n")
 
   # Copy of dir1 files on dir2 to do a quick check.
   dir_temp <- file.path(dir2, "temp")
@@ -60,7 +68,7 @@ RadEro_run <- function(data, config, AxisMaxValue = NULL) {
   dir.create(results_folder, showWarnings = FALSE) # Create results folder if it doesn't exist
   if (file.exists(results_file_path)) {
     file.remove(results_file_path) # Remove existing 'results.txt' if it exists
-    #cat("Removed existing 'results.txt'.\n")
+    #message("Removed existing 'results.txt'.\n")
   }
 
   # Loop through the unique values of 'id'.
@@ -68,7 +76,7 @@ RadEro_run <- function(data, config, AxisMaxValue = NULL) {
   {
     # Filter values to current 'id'.
     data2 <- data1[data1$id == i, ]
-	cat(sprintf(" \n ---- Simulating profile: %s --------------\n", i))
+	message(sprintf(" \n ---- Simulating profile: %s --------------\n", i))
 
     # Check in the loop if the directory already exists, delete previous one and create a new one
     if (dir.exists(dir_temp)) {
@@ -76,24 +84,23 @@ RadEro_run <- function(data, config, AxisMaxValue = NULL) {
     }
     dir.create(dir_temp) # Create the directory
 
+    dir1 <- dir_temp
+
     # Create "_config.js".
     tryCatch({
       resample_config(data2, config1, dir1)
-      #cat(sprintf(" %s specific profile configuration file created and saved in %s.\n", ,results_folder))
+      #message(sprintf(" %s specific profile configuration file created and saved in %s.\n", ,results_folder))
     }, error = function(e) {
-      cat("Error in config file '_config.js':", conditionMessage(e), "\n")
+      message("Error in config file '_config.js':", conditionMessage(e), "\n")
     })
 
     # Create "_exp.txt".
     tryCatch({
       resample_data(data2, dir1)
-      #cat(sprintf(" %s segmented mesured activity file '_exp.txt' created and saved in %s.\n", ,results_folder))
+      #message(sprintf(" %s segmented mesured activity file '_exp.txt' created and saved in %s.\n", ,results_folder))
     }, error = function(e) {
-      cat("Error creating '_exp.txt':", conditionMessage(e), "\n")
+      message("Error creating '_exp.txt':", conditionMessage(e), "\n")
     })
-
-    #Save the current working directory
-    dir2 <- getwd()
 
     #Change the working directory to the temporary directory
     setwd(dir1)
@@ -101,9 +108,9 @@ RadEro_run <- function(data, config, AxisMaxValue = NULL) {
 	# Execute the model
 	tryCatch({
 		rcpp_cs_model()# Replace with your actual model execution code
-	  cat(sprintf(" %s successfully simulated. \n",i))
+	  message(sprintf(" %s successfully simulated. \n",i))
 	}, error = function(e) {
-	  cat("\n Error executing the model:", conditionMessage(e), "\n")
+	  message("\n Error executing the model:", conditionMessage(e), "\n")
 	})
 
     # Read data2 from 'resultstemp.txt'.
@@ -116,7 +123,7 @@ RadEro_run <- function(data, config, AxisMaxValue = NULL) {
 
 	# Append data2 to 'results.txt'.
 	write.table(formatted_row, file = results_file_path, append = TRUE, sep = " ", col.names = FALSE, row.names = FALSE, quote = FALSE)
-	cat(sprintf("\n %s results saved in %s.\n" ,i,results_folder))
+	message(sprintf("\n %s results saved in %s.\n" ,i,results_folder))
 
 	# Create "id_tempFiles" folder in the results folder
     id_tempFiles_folder <- file.path(results_folder, paste0(i, "_tempFiles"))
@@ -128,26 +135,22 @@ RadEro_run <- function(data, config, AxisMaxValue = NULL) {
 	# Get a list of all files in the source directory
 	list_tempfiles <- list.files(dir1, full.names = TRUE)
 
-	# Define the destination paths by combining the destination folder with each file name
-	#to_paths <- file.path(id_tempFiles_folder, basename(list_tempfiles))
-
 	# Copy files to the new directory
 	file.copy(from = list_tempfiles, to = id_tempFiles_folder, overwrite = TRUE, recursive = TRUE)
-cat(config1$`cell-thickness`)
+  message(config1$`cell-thickness`)
+
 	# Execute 'plot.R'.
       tryCatch({
          plot(data1, data2, dir1, dir2, AxisMaxValue, cell_value = config1$`cell-thickness`)
-        #cat(sprintf(" %s plot saved in %s.\n", , results_folder))
+        #message(sprintf(" %s plot saved in %s.\n", , results_folder))
        } ,error = function(e) {
-         cat("\n Error executing 'plot.R':", conditionMessage(e), "\n")
+         message("\n Error executing 'plot.R':", conditionMessage(e), "\n")
       })
 
   # Change the working directory back to the original
-  setwd(dir2)
-
-  # Delete the temporary directory
-  #unlink(dir1, recursive = TRUE)
-
+  setwd(oldwd)
   }
-  cat(" RadEro_run finished.\n")
+
+  message(" RadEro_run finished.\n")
+
 }

@@ -24,6 +24,8 @@
 
 #include <stdio.h>
 #include <stdlib.h>
+#include <unistd.h>
+#include <limits.h>
 #if defined (__WIN32__)
 #include <dir.h>
 #endif
@@ -34,6 +36,11 @@
 #include "simulation.h"
 #include "optimization.h"
 #include "R.h"
+#define CONFIGJS "_config.js"
+#define TXTEXP "_exp.txt"
+#define TXTNUM1 "_num.txt"
+#define TXTNUM2 "_num2.txt"
+#define TXTNUM3 "_num3.txt"
 
 
 int cs_model(void)
@@ -57,7 +64,7 @@ int cs_model(void)
 	d.debug = 0;
 
 	// Read configuration
-	snprintf (fname, 1024, "_config.js");
+	snprintf (fname, 1024, CONFIGJS);
 	read_config (&d, fname);
 
 	// Declare data structure and init
@@ -69,13 +76,13 @@ int cs_model(void)
 	read_config (&d2, fname);
 
 	// Read measured activity
-	read_activity (&d2, "_exp.txt");
+	read_activity (&d2, TXTEXP);
 
 	// Optimize
 	optimize (&d, &d2);
 
 	// Write results
-	write_activity (&d , 1, "_num.txt", "_num2.txt", "_num3.txt");
+	write_activity (&d , 1, TXTNUM1, TXTNUM2, TXTNUM3);
 
 	return 0;
 	

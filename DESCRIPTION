@@ -1,11 +1,22 @@
 Package: RadEro
 Type: Package
 Title: Cs-137 Conversion Model
-Version: 1.0.3
-Date: 2024-09-19
-Authors@R: c(person(given = "Arturo",family = "Catala",role = c("aut", "cre"),email = "acatalae@gmail.com"),person(given = "Borja",family = "Latorre",role = "aut"),person(given = "Leticia",family = "Gaspar",role = "aut"),person(given = "Ana",family = "Navas",role = "aut"))
-Maintainer: Arturo Catala <acatalae@gmail.com>
-Description: Conversion model that quantifies soil redistribution rates based on Cs137 inventories measured in soil profiles.
+Version: 1.0.5
+Date: 2024-11-18
+Authors@R: c(
+    person(given = "Arturo", family = "Catala", role = c("aut", "cre"), email = "radero@eead.csic.es"),
+    person(given = "Borja", family = "Latorre", role = c("aut", "ctb", "cph")),
+    person(given = "Leticia", family = "Gaspar", role = "aut"),
+    person(given = "Ana", family = "Navas", role = "aut"),
+    person(given = "Dave", family = "Gamble", role = "ctb", comment = "Author of the cJSON.h library"))
+Description: A straightforward model to estimate soil migration rates across various soil contexts. 
+	Based on the compartmental, vertically-resolved, physically-based mass balance model of Soto and Navas (2004) 
+	<doi:10.1016/j.jaridenv.2004.02.003> and Soto and Navas (2008) <doi:10.1016/j.radmeas.2008.02.024>.
+	'RadEro' provides a user-friendly interface in R, utilizing input data such as 137Cs inventories and parameters directly derived 
+	from soil samples (e.g., fine fraction density, effective volume) to accurately capture the 137Cs distribution within the soil profile. 
+	The model simulates annual 137Cs fallout, radioactive decay, and vertical diffusion, with the diffusion coefficient calculated 
+	from 137Cs reference inventory profiles. Additionally, it allows users to input custom parameters as calibration coefficients. 
+	The RadEro user manual and protocol, including detailed instructions on how to format input data and configuration files, can be found at the following link: <https://github.com/eead-csic-eesa/RadEro>.
 License: GPL (>= 2)
 Depends: R (>= 4.3.0)
 Imports:

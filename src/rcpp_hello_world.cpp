@@ -2,9 +2,9 @@
 #include <Rcpp.h>
 using namespace Rcpp;
 
-extern "C" SEXP cs_model();
+extern "C" int cs_model();
 
-// [[Rcpp::export]]
+/* // [[Rcpp::export]]
 List rcpp_hello_world() {
 
     CharacterVector x = CharacterVector::create( "foo", "bar" )  ;
@@ -12,7 +12,7 @@ List rcpp_hello_world() {
     List z            = List::create( x, y ) ;
 
     return z ;
-}
+} */
 
 // [[Rcpp::export]]
 void rcpp_cs_model() {

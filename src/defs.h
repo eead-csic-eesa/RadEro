@@ -80,7 +80,7 @@ void debug (data * this)
 {
 	if (this->debug == 1)
 	{
-		printf("DEBUG: %s\n", this->debug_msg);
+		// printf("DEBUG: %s\n", this->debug_msg);
 	}
 }
 
