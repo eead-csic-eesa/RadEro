@@ -37,11 +37,11 @@
   "optimization" :
     {
       "k-initial"        :  0.00,
-      "k-final"          :  0.40,
-      "e-initial"        : -0.04,
-      "e-final"          :  0.04,
-      "k-samples"        : 70,
-      "e-samples"        : 70
+      "k-final"          :  0.10,
+      "e-initial"        : -0.01,
+      "e-final"          :  0.01,
+      "k-samples"        : 400,
+      "e-samples"        : 400
     }
 
 }

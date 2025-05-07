@@ -96,9 +96,9 @@ plot <- function(data1, data2, dir1, dir2, AxisMaxValue, cell_value) {
 
   # Preparation of limits, ranges and axis values. |||||||||| WARNING: PLOTS ARE ROTATED TO ADABT THE STEP-PLOT TO A VERTICAL PROFILE, defined x axis here will be y axis in the resulting plot. ||||||||||
   # Total experimental inventory 'expinv' to add in the results legend.
-  expinv <- round(sum(data2$Cs137_invt))
+  expinv <- sum(data2$Cs137_invt)
   # Total simulated inventory 'siminv' to add in the results legend.
-  siminv <- round(sum(plot_data$num2*cell))
+  siminv <- sum(plot_data$num2*cell)
 
   # Define the maximum inventory between all the profiles in 'plot_data'.
   if (is.null(AxisMaxValue)) {
@@ -153,6 +153,12 @@ plot <- function(data1, data2, dir1, dir2, AxisMaxValue, cell_value) {
   step_exp <- data.frame(x = c( plot_data[["depth1"]]))
   step_exp$y <- inv_exp(step_exp$x)
 
+
+	if(nrow(exp) == 1) # bulk profile
+	{
+		plot_data$num2 <- plot_data$cs_inv * siminv / expinv
+	}
+
   p_base <- ggplot(plot_data) +
     # Range and orientation of the y-axis of inventory step-plot.
     coord_flip(ylim= y_range, expand = FALSE) +
@@ -162,11 +168,12 @@ plot <- function(data1, data2, dir1, dir2, AxisMaxValue, cell_value) {
     # Experimental Inventory step-plot.
     geom_step(data = step_exp, aes(x = x, y = y, color="Exp. inv."),direction= "vh" ) +
     # Segmented Line: Simulated Inventory.
-    geom_segment(aes(x = depth1, y = num2, xend = dplyr::lead(depth1), yend =dplyr::lead(num2), color="Sim. inv."),alpha = 0.5, na.rm = TRUE) +
+    #geom_segment(aes(x = depth1, y = num2, xend = dplyr::lead(depth1), yend =dplyr::lead(num2), color="Sim. inv."),alpha = 0.5, na.rm = TRUE, linetype = "dashed") +
+    geom_line(aes(x = depth1, y = num2, color="Sim. inv."),alpha = 1.0, na.rm = TRUE, linetype = "longdash") +
     # Axis titles.
     labs(title =paste("Soil profile id:", unique(data2$id)), y = expression(" Bq m"^"-3"), x = "Depth m", color=NULL) +
     # Legend.
-    scale_color_manual(values =c("Exp. inv."="blue", "Sim. inv."="red"), labels = c(bquote(Exp.Inv. == .(expinv)~"Bq m"^"-2"),bquote(Sim.Inv. == .(siminv)~"Bq m"^"-2"))) +
+    scale_color_manual(values =c("Exp. inv."="blue", "Sim. inv."="red"), labels = c(bquote("Exp. Inv." == .(round(expinv))~"Bq m"^"-2"),bquote("Sim. Inv." == .(round(siminv))~"Bq m"^"-2"))) +
     # General aspects.
     theme(plot.margin = margin(10, 10, 10, 10),
           panel.background = element_rect(fill = "white"),

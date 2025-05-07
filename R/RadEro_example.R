@@ -9,7 +9,7 @@
 #' @param target_dir  The path to the directory where the files will be copied.
 #' @param overwrite Logical. Whether to overwrite the files if they already exist in the target directory (default is TRUE).
 #'
-#' @return This function generates two template files in the specified directory: one for data input and another for configuration input. These templates serve as examples, demonstrating how to construct and format the input files.
+#' @return This function generates two templates files for a reference site and two template files for study sires in the specified directory: each set has one file for data input and another for configuration input. These templates serve as examples, demonstrating how to construct and format the input files.
 #'
 #' @export
 
@@ -26,7 +26,7 @@ RadEro_example <- function(target_dir=NULL, overwrite = TRUE) {
   }
 
   # List of files in the data directory of the package
-  files_to_copy <- c("input-data_example.csv", "input-config_example.js")
+  files_to_copy <- c("input-data_example.csv", "input-config_example.js","input-data_example_reference.csv", "input-config_example_reference.js")
 
   # Loop over files and copy them to the target directory
   for (file_name in files_to_copy) {

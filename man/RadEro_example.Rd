@@ -12,7 +12,7 @@ RadEro_example(target_dir = NULL, overwrite = TRUE)
 \item{overwrite}{Logical. Whether to overwrite the files if they already exist in the target directory (default is TRUE).}
 }
 \value{
-This function generates two template files in the specified directory: one for data input and another for configuration input. These templates serve as examples, demonstrating how to construct and format the input files.
+This function generates two templates files for a reference site and two template files for study sires in the specified directory: each set has one file for data input and another for configuration input. These templates serve as examples, demonstrating how to construct and format the input files.
 }
 \description{
 This function copies example files (e.g., .js and .csv) from the "data" directory of the package to a specified working directory.

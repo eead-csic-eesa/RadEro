@@ -1,0 +1,6 @@
+id;depth_i;depth_f;Cs137_invt;Ref_Cs137_invt;effVol;density;k;e;mix_depth_i;mix_depth_f;mix_year_i;mix_year_f;mix_frequency;lower_boundary
+Ref;0;0.05;992.29;;;;;;;;;;;
+Ref;0.05;0.1;441.11;;;;;;;;;;;
+Ref;0.1;0.15;99.91;;;;;;;;;;;
+Ref;0.15;0.2;36.42;;;;;;;;;;;
+Ref;0.2;0.25;0.28;1570;0.7;1.26;;;;;;;;0.6
